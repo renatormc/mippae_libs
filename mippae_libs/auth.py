@@ -27,3 +27,5 @@ def get_user_claims():
         except (jwt.exceptions.DecodeError, IndexError, AttributeError, jwt.exceptions.ExpiredSignatureError): 
             g.user_claims = None
     return g.user_claims
+
+    #Comment add
