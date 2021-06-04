@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 setup(
     name='mippae_libs',
     packages=find_packages(include=['mippae_libs']),
-    version='0.1.0',
+    version='0.1.1',
     description='Helpers for mippae project',
     author='Renato Martins',
     license='MIT',
