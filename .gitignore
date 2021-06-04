@@ -5,3 +5,4 @@ eggs/
 *.egg-info/
 __pycache__/
 .python-version
+.vscode

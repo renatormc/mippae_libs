@@ -7,7 +7,16 @@ setup(
     author='Renato Martins',
     license='MIT',
     install_requires=[],
-    setup_requires=['pytest-runner'],
+    setup_requires=[
+        'pytest-runner',
+        'click',
+        'Flask',
+        'itsdangerous',
+        'Jinja2',
+        'MarkupSafe',
+        'PyJWT',
+        'Werkzeug',
+    ],
     tests_require=['pytest==4.4.1'],
     test_suite='tests',
 )
