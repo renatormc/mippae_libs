@@ -2,6 +2,7 @@ from flask import g, request, abort, make_response, jsonify
 from . import config
 import jwt
 from functools import wraps
+from datetime import date, datetime
 
 
 def jwt_required(f):
@@ -23,9 +24,19 @@ def get_user_claims():
             parts = request.headers.get('Authorization').split()
             if parts[0] != "Bearer":
                 raise jwt.exceptions.DecodeError()
-            g.user_claims = jwt.decode(parts[1], config.SECRETKEY, algorithms=['HS256'])
-        except (jwt.exceptions.DecodeError, IndexError, AttributeError, jwt.exceptions.ExpiredSignatureError): 
+            g.user_claims = jwt.decode(
+                parts[1], config.SECRETKEY, algorithms=['HS256'])
+        except (jwt.exceptions.DecodeError, IndexError, AttributeError, jwt.exceptions.ExpiredSignatureError):
             g.user_claims = None
     return g.user_claims
 
-    #Comment add
+    # Comment add
+
+
+def gen_token(sub, exp):
+    payload = {
+        "sub": sub,
+        "exp": exp.timestamp(),
+        "iat": datetime.now().timestamp()
+    }
+    return jwt.encode(payload, config.SECRETKEY, algorithm='HS256')
