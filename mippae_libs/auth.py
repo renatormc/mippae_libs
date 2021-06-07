@@ -21,7 +21,8 @@ def get_user_claims():
             raise AttributeError()
     except AttributeError:
         try:
-            parts = request.headers.get('Authorization').split()
+            value = request.headers.get('Authorization') or request.cookies.get('Authorization')
+            parts = value.split()
             if parts[0] != "Bearer":
                 raise jwt.exceptions.DecodeError()
             g.user_claims = jwt.decode(
